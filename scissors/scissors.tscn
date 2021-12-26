@@ -1,9 +1,197 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scissors/scissors.gd" type="Script" id=1]
+[ext_resource path="res://scissors/temp_idle.png" type="Texture" id=2]
+[ext_resource path="res://scissors/temp_shorthop.png" type="Texture" id=3]
+[ext_resource path="res://scissors/temp_high_warmup.png" type="Texture" id=4]
+[ext_resource path="res://scissors/temp_crouch_mid_warmup.png" type="Texture" id=5]
+[ext_resource path="res://scissors/temp_mid_block.png" type="Texture" id=6]
+[ext_resource path="res://scissors/temp_crouch_low_block.png" type="Texture" id=7]
+[ext_resource path="res://scissors/temp_crouch_low_warmup.png" type="Texture" id=8]
+[ext_resource path="res://scissors/temp_mid_attack.png" type="Texture" id=9]
+[ext_resource path="res://scissors/temp_low_warmup.png" type="Texture" id=10]
+[ext_resource path="res://scissors/temp_crouch_idle.png" type="Texture" id=11]
+[ext_resource path="res://scissors/temp_high_block.png" type="Texture" id=12]
+[ext_resource path="res://scissors/temp_mid_warmup.png" type="Texture" id=13]
+[ext_resource path="res://scissors/temp_low_block.png" type="Texture" id=14]
+[ext_resource path="res://scissors/temp_crouch_mid_attack.png" type="Texture" id=15]
+[ext_resource path="res://scissors/temp_crouch_low_attack.png" type="Texture" id=16]
+[ext_resource path="res://scissors/temp_low_attack.png" type="Texture" id=17]
+[ext_resource path="res://scissors/temp_high_attack.png" type="Texture" id=18]
+[ext_resource path="res://scissors/temp_sidestep.png" type="Texture" id=19]
+[ext_resource path="res://scissors/temp_crouch_mid_block.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "block_low",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "crouch_attack_low",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "crouch_block_low",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "crouch_attack_mid",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "crouch_block_mid",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "attack_low",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "attack_mid",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "attack_high",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 21 ) ],
+"loop": true,
+"name": "shorthop",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ) ],
+"loop": true,
+"name": "crouch_idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 23 ) ],
+"loop": true,
+"name": "sidestep",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 24 ) ],
+"loop": true,
+"name": "block_high",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ) ],
+"loop": true,
+"name": "block_mid",
+"speed": 5.0
+} ]
 
 [node name="scissors" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -11,15 +199,21 @@ script = ExtResource( 1 )
 [node name="collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -16.0
-margin_top = -16.0
-margin_right = 16.0
-margin_bottom = 16.0
-color = Color( 0.917647, 0.866667, 0.0823529, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 26 )
+animation = "idle"
 
-[node name="jump_input_timer" type="Timer" parent="."]
+[node name="up_input_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="down_input_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="left_input_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="right_input_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="sidestep_timer" type="Timer" parent="."]
 one_shot = true
