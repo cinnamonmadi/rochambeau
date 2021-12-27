@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://scissors/scissors.gd" type="Script" id=1]
 [ext_resource path="res://scissors/temp_idle.png" type="Texture" id=2]
@@ -22,7 +22,7 @@
 [ext_resource path="res://scissors/temp_crouch_mid_block.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 10, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 14 )
@@ -42,18 +42,6 @@ region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
@@ -120,6 +108,18 @@ region = Rect2( 0, 0, 32, 32 )
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=26]
 animations = [ {
 "frames": [ SubResource( 2 ) ],
@@ -136,11 +136,6 @@ animations = [ {
 "loop": true,
 "name": "crouch_block_low",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "crouch_attack_mid",
-"speed": 4.0
 }, {
 "frames": [ SubResource( 10 ) ],
 "loop": true,
@@ -191,7 +186,15 @@ animations = [ {
 "loop": true,
 "name": "block_mid",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "crouch_attack_mid",
+"speed": 4.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 7, 16 )
 
 [node name="scissors" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -201,7 +204,7 @@ shape = SubResource( 1 )
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 26 )
-animation = "idle"
+animation = "crouch_attack_low"
 
 [node name="up_input_timer" type="Timer" parent="."]
 one_shot = true
@@ -216,4 +219,15 @@ one_shot = true
 one_shot = true
 
 [node name="sidestep_timer" type="Timer" parent="."]
+
+[node name="blockstun_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="parry_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="hurtbox" type="Area2D" parent="."]
+position = Vector2( 12, 0 )
+
+[node name="collider" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource( 27 )
