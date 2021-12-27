@@ -25,6 +25,7 @@ var input_attack: String
 var input_block: String
 
 var direction: Vector2 = Vector2.ZERO
+var forward_direction: int = 0
 var velocity: Vector2 = Vector2.ZERO
 var crouched: bool = false
 var shorthopping: bool = false
@@ -44,8 +45,10 @@ func set_player_number(number: int) -> void:
 	set_name("player_" + str(player_number))
 	if player_number == 1:
 		opponent_name = "player_2"
+		forward_direction = 1
 	else:
 		opponent_name = "player_1"
+		forward_direction = -1
 
 	# Update input names
 	var input_prefix: String = "p" + str(player_number) + "_"
@@ -179,6 +182,8 @@ func update_sprite() -> void:
 				anim_name += "mid"
 			elif attack_direction == AttackDirection.LOW:
 				anim_name += "low"
+		elif direction.x == forward_direction:
+			anim_name += "walk_forward"
 		else:
 			anim_name += "idle"
 		sprite.play(anim_name)
